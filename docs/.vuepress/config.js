@@ -36,9 +36,9 @@ module.exports = {//添加标题和搜索框功能
             {
                 text: '链接',
                 items: [
-                    {text: '简书', link: 'https://www.jianshu.com/u/cbc58f855e75'},
-                    {text: 'GitHub', link: 'https://github.com/zhuzhaohua'},
-                    {text: '码云', link: 'https://gitee.com/kobuta'},
+                    {text: '简书', link: 'https://www.jianshu.com/u/56d830aacc6c'},
+                    {text: 'GitHub', link: 'https://github.com/Memorydoc'},
+                    {text: '码云', link: 'https://gitee.com/Memorydoc'},
                 ]
             }
         ],
@@ -88,7 +88,7 @@ module.exports = {//添加标题和搜索框功能
         // 如果你的文档不在仓库的根目录下：
         docsDir: 'docs',
         // 如果你的文档在某个特定的分支（默认是 'master' 分支）：
-        docsBranch: 'master',
+        docsBranch: 'dev',
         // 默认为 false，设置为 true 来启用
         editLinks: true,
         // 自定义编辑链接的文本。默认是 "Edit this page"

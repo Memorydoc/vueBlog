@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: /img/logo.jpeg
-actionText: Go It →
+actionText: Get It →
 actionLink: /current/
 features:
 - title: 投诉建议
