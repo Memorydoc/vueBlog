@@ -1,15 +1,36 @@
+// docs/.vuepress/config.js
+// docs/.vuepress/config.js
+const pluginConf = require('../config/pluginConf.js');
+const urlPattern = require('./utils/urlPattern');
+const routers = require('./constant/routers');
+
 module.exports = {//添加标题和搜索框功能
-    title: '资源分享小屋',
-    description: 'Just do it',//
-    base: '/pwc/',
+    title: 'Memorydoc',
+    description: '各种技术，拥有仅有',//
+    base: '/',
     head: [
-        ['link', {rel: 'icon', href: '/img/logo.jpeg'}]
+        ['link', {rel: 'icon', href: '/img/logo.jpeg'}],
+        ['link', {rel: 'manifest', href: '/manifest.json'}],
     ],
+    plugins: pluginConf,
     themeConfig: {
         logo: "/img/logo.jpeg",
         nav: [
             {text: '首页', link: '/'},
-            {text: '资源', link: '/resource/'},
+            {
+                text: '技术',
+                items: [
+                    {text: 'java', link: '/c/'},
+                    {text: 'javascript', link: '/javascript/'},
+                    {text: 'vue', link: '/vue/'},
+                    {text: '微服务', link: '/microservice/'},
+                    {text: '中间件', link: '/middleware/'},
+                    {text: '数据库', link: '/database/'},
+                    {text: '并发编程', link: '/current/'},
+                    {text: '面试题', link: '/interview/'},
+                    {text: '其它', link: '/other/'},
+                ]
+            },
             {text: '关于', link: '/about/'},
             {text: '留言板', link: '/massage/'},
             {
@@ -22,26 +43,40 @@ module.exports = {//添加标题和搜索框功能
             }
         ],
         lastUpdated: '最后更新时间: ',
-        sidebar: {
-            '/resource/': [
-                ['#', '前台资源'],
-                ['/resource/front/javascript', 'javascript'],
-                ['/resource/front/vue', 'vue']
-            ]
+        sidebar:
+            {
+                "/current/": [
+                    {
+                        title: '并发编程',
+                        path: '/current/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 1,    // 可选的, 默认值是 1
+                        children: urlPattern.pattern(routers.current, '/current/')
+                    },
+                ],
+                "/about/": [
+                    {
+                        title: '关于',
+                        path: '/about/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 1    // 可选的, 默认值是 1
+                    },
+                ],
+                "/massage/": [
+                    {
+                        title: '留言板',
+                        path: '/massage/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 1    // 可选的, 默认值是 1
+                    },
+                ]
 
-        },
-        displayAllHeaders: true,// 默认值：false
-        sidebarDepth: 2,
-        serviceWorker: {
-            updatePopup: true, // Boolean | Object, 默认值是 undefined.
-            // 如果设置为 true, 默认的文本配置将是:
-            updatePopup: {
-               message: "网站更新",
-               buttonText: "更新"
             }
-        },
+        ,
+        displayAllHeaders: false,// 默认值：false
+        sidebarDepth: 2,
         // 假定 GitHub。也可以是一个完整的 GitLab URL。
-        repo: 'vuejs/vuepress',
+        repo: 'Memorydoc/vueBlog',
         // 自定义项目仓库链接文字
         // 默认根据 `themeConfig.repo` 中的 URL 来自动匹配是 "GitHub"/"GitLab"/"Bitbucket" 中的哪个，如果不设置时是 "Source"。
         repoLabel: '贡献代码！',
@@ -49,7 +84,7 @@ module.exports = {//添加标题和搜索框功能
         // 以下为可选的 "Edit this page" 链接选项
 
         // 如果你的文档和项目位于不同仓库：
-        docsRepo: 'vuejs/vuepress',
+        docsRepo: 'Memorydoc/vueBlog',
         // 如果你的文档不在仓库的根目录下：
         docsDir: 'docs',
         // 如果你的文档在某个特定的分支（默认是 'master' 分支）：
@@ -65,13 +100,9 @@ module.exports = {//添加标题和搜索框功能
         // 作为特例，默认语言可以使用 '/' 作为其路径。
         '/': {
             lang: 'zh-CN', // 将会被设置为 <html> 的 lang 属性
-            title: 'VuePress',
-            description: 'Vue-powered Static Site Generator'
-        },
-        '/zh/': {
-            lang: 'en-US',
-            title: 'VuePress',
-            description: 'Vue 驱动的静态网站生成器'
+            title: 'Memorydoc',
+            description: '真理惟一可靠的标准就是永远自相符合'
         }
     }
 }
+

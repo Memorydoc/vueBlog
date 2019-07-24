@@ -1,6 +1,5 @@
 <template>
     <div>
-        <content />
         这是资源，这里拥有全世界
     </div>
 </template>
