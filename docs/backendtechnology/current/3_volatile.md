@@ -1,5 +1,5 @@
 ---
-title: volatile
+title: volatile(内存可见)
 ---
 
 ## volatile作用

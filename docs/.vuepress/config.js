@@ -3,6 +3,8 @@
 const pluginConf = require('../config/pluginConf.js');
 const urlPattern = require('./utils/urlPattern');
 const routers = require('./constant/routers');
+const navConstants = require('./constant/NavConstants');
+
 
 module.exports = {//添加标题和搜索框功能
     title: 'Memorydoc',
@@ -20,18 +22,36 @@ module.exports = {//添加标题和搜索框功能
             {
                 text: '技术',
                 items: [
-                    {text: 'java', link: '/c/'},
-                    {text: 'javascript', link: '/javascript/'},
-                    {text: 'vue', link: '/vue/'},
-                    {text: '微服务', link: '/microservice/'},
-                    {text: '中间件', link: '/middleware/'},
-                    {text: '数据库', link: '/database/'},
-                    {text: '并发编程', link: '/current/'},
-                    {text: '面试题', link: '/interview/'},
-                    {text: '其它', link: '/other/'},
+                    {
+                        text: "后端栈",
+                        items: [{text: 'JAVA', link: '/backendtechnology/java/'},
+                            {text: '微服务', link: '/backendtechnology/microservice/'},
+                            {text: '中间件', link: '/backendtechnology/middleware/'},
+                            {text: '数据库', link: '/backendtechnology/database/'},
+                            {text: '并发编程', link: '/backendtechnology/current/'}]
+                    }, {
+                        text: "前端栈",
+                        items: [{text: 'Javascript', link: '/fronttechnology/javascript/'},
+                            {text: 'Vue', link: '/fronttechnology/vue/'}]
+                    },
+                    {
+                        text: '开拓视野',
+                        items: [
+                            {text: '面试宝典', link: '/openuphorizons/interview/'},
+                            {text: '拓展', link: '/openuphorizons/other/'},
+                            {text: '陷阱', link: '/openuphorizons/trap/'}
+                        ]
+                    }
                 ]
             },
-            {text: '关于', link: '/about/'},
+            {
+                text: '在线文档',
+                items: navConstants.navJson.onlinedocsItems
+            },
+            {text: '在线工具',
+                items: navConstants.navJson.onlinetoolItems
+            },
+            {text: '关于作者', link: '/about/'},
             {text: '留言板', link: '/massage/'},
             {
                 text: '链接',
@@ -45,15 +65,7 @@ module.exports = {//添加标题和搜索框功能
         lastUpdated: '最后更新时间: ',
         sidebar:
             {
-                "/current/": [
-                    {
-                        title: '并发编程',
-                        path: '/current/',
-                        collapsable: false, // 可选的, 默认值是 true,
-                        sidebarDepth: 1,    // 可选的, 默认值是 1
-                        children: urlPattern.pattern(routers.current, '/current/')
-                    },
-                ],
+
                 "/about/": [
                     {
                         title: '关于',
@@ -69,7 +81,79 @@ module.exports = {//添加标题和搜索框功能
                         collapsable: false, // 可选的, 默认值是 true,
                         sidebarDepth: 1    // 可选的, 默认值是 1
                     },
-                ]
+                ],
+                "/backendtechnology/java/": [
+                    {
+                        title: 'JAVA',
+                        path: '/java/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 1,    // 可选的, 默认值是 1
+                        children: urlPattern.pattern(routers.java, '/backendtechnology/java/')
+                    },
+                ],
+                "/backendtechnology/microservice/": [
+                    {
+                        title: '微服务',
+                        path: '/microservice/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 1,    // 可选的, 默认值是 1
+                        children: urlPattern.pattern(routers.microservice, '/backendtechnology/microservice/')
+                    },
+                ],
+                "/backendtechnology/middleware/": [
+                    {
+                        title: '中间件',
+                        path: '/middleware/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 1,    // 可选的, 默认值是 1
+                        children: urlPattern.pattern(routers.middleware, '/backendtechnology/middleware/')
+                    },
+                ],
+                "/backendtechnology/database/": [
+                    {
+                        title: '数据库',
+                        path: '/database/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 1,    // 可选的, 默认值是 1
+                        children: urlPattern.pattern(routers.database, '/backendtechnology/database/')
+                    },
+                ],
+                "/backendtechnology/current/": [
+                    {
+                        title: '并发编程',
+                        path: '/current/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 1,    // 可选的, 默认值是 1
+                        children: urlPattern.pattern(routers.current, '/backendtechnology/current/')
+                    },
+                ],
+                "/openuphorizons/other/": [
+                    {
+                        title: '技术拓展',
+                        path: '/other/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 1,    // 可选的, 默认值是 1
+                        children: urlPattern.pattern(routers.other, '/openuphorizons/other/')
+                    },
+                ],
+                "/openuphorizons/trap/": [
+                    {
+                        title: '技术陷阱',
+                        path: '/trap/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 1,    // 可选的, 默认值是 1
+                        children: urlPattern.pattern(routers.trap, '/openuphorizons/trap/')
+                    },
+                ],
+                "/openuphorizons/interview/": [
+                    {
+                        title: '面试宝典',
+                        path: '/interview/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 1,    // 可选的, 默认值是 1
+                        children: urlPattern.pattern(routers.interview, '/openuphorizons/interview/')
+                    },
+                ],
 
             }
         ,
@@ -103,6 +187,9 @@ module.exports = {//添加标题和搜索框功能
             title: 'Memorydoc',
             description: '真理惟一可靠的标准就是永远自相符合'
         }
-    }
+    },
+    extraWatchFiles: [
+        './config.js', // 使用相对路径
+    ]
 }
 
