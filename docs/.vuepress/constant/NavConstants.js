@@ -2,17 +2,25 @@ module.exports = {
     navJson: {
         onlinedocsItems: [{
             text: "前端文档", items: [
-                {text: 'Vue', link: "https://cn.vuejs.org/v2/api/"},
+                {text: 'Vue', link: "https://cn.vuejs.org/v2/guide/"},
                 {text: 'Vuex', link: "https://vuex.vuejs.org/zh/api/#vuex-store"},
-                {text: 'Axios', link: "https://www.kancloud.cn/yunye/axios/234845"},
+                {text: 'Vuex', link: "https://router.vuejs.org/"},
+                {text: 'VuePress', link: "https://v1.vuepress.vuejs.org/"},
+                {text: 'Axios', link: "http://www.axios-js.com/"},
+                {text: 'Lodash', link: "https://www.html.cn/doc/lodash/"},
                 {text: 'Jquery', link: "https://www.jquery123.com/"},
-                {text: 'Bootstrap', link: "   https://www.runoob.com/bootstrap/bootstrap-tutorial.html"},
+                {text: 'Element', link: "https://element.eleme.cn/2.0/#/zh-CN"},
+                {text: 'Bootstrap', link: "https://www.runoob.com/bootstrap/bootstrap-tutorial.html"},
+                {text: '微信公众平台', link: "https://mp.weixin.qq.com/"},
+                {text: 'Vue-Element-Admin', link: "https://panjiachen.github.io/vue-element-admin-site/zh/"},
+
             ]
         },
             {
                 text: "后端文档", items: [
                     {text: 'SpringIO', link: "https://spring.io/"},
                     {text: 'SpringStart', link: "https://start.spring.io/"},
+                    {text: 'Pig平台', link: "https://pig4cloud.com/#/doc/pig"},
                 ]
             }],
         onlinetoolItems: [{
@@ -30,6 +38,7 @@ module.exports = {
                 {text: '在线编码转换', link: "http://tool.chinaz.com/tools/native_ascii.aspx"},
                 {text: 'YAML<->Properties', link: "https://www.toyaml.com/index.html"},
                 {text: '在线WEB练习', link: "https://jsfiddle.net/"},
+                {text: 'Binary Search Tree', link: "https://www.cs.usfca.edu/~galles/visualization/Algorithms.html"},
             ]
         }, {
             text: '在线服务', items: [
@@ -44,11 +53,13 @@ module.exports = {
                 {text: 'AZURE', link: "https://mirror.azure.cn/"},
                 {text: 'Docker HUB', link: "https://hub.docker.com/"},
             ]
-        }, {text: '趋势分析', items: [
+        }, {
+            text: '趋势分析', items: [
                 {text: '谷歌趋势', link: "https://trends.google.com/trends/?geo=US"},
                 {text: '百度指数', link: "http://index.baidu.com/v2/index.html#/"},
                 {text: '百度流量研究院', link: "https://tongji.baidu.com/data/browser"},
-            ]}],
+            ]
+        }],
 
     }
 }

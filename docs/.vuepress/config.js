@@ -1,5 +1,4 @@
 // docs/.vuepress/config.js
-// docs/.vuepress/config.js
 const pluginConf = require('../config/pluginConf.js');
 const urlPattern = require('./utils/urlPattern');
 const routers = require('./constant/routers');
@@ -10,17 +9,19 @@ module.exports = {//添加标题和搜索框功能
     title: 'Memorydoc',
     description: '各种技术，拥有仅有',//
     base: '/',
+    port: 9090,
     head: [
-        ['link', {rel: 'icon', href: '/img/logo.jpeg'}],
+        ['link', {rel: 'icon', href: '/img/logo.png'}],
         ['link', {rel: 'manifest', href: '/manifest.json'}],
     ],
     plugins: pluginConf,
     themeConfig: {
-        logo: "/img/logo.jpeg",
+        logo: "/img/logo.png",
+        activeHeaderLinks : true,
         nav: [
             {text: '首页', link: '/'},
             {
-                text: '技术',
+                text: '技术栈',
                 items: [
                     {
                         text: "后端栈",
@@ -28,7 +29,12 @@ module.exports = {//添加标题和搜索框功能
                             {text: '微服务', link: '/backendtechnology/microservice/'},
                             {text: '中间件', link: '/backendtechnology/middleware/'},
                             {text: '数据库', link: '/backendtechnology/database/'},
-                            {text: '并发编程', link: '/backendtechnology/current/'}]
+                            {text: '并发编程', link: '/backendtechnology/current/'},
+                            {text: '部署', link: '/backendtechnology/deploy/'},
+                            {text: '框架', link: '/backendtechnology/frame/'},
+                            {text: '设计模式', link: '/backendtechnology/design/'}
+                        ],
+
                     }, {
                         text: "前端栈",
                         items: [{text: 'Javascript', link: '/fronttechnology/javascript/'},
@@ -71,7 +77,7 @@ module.exports = {//添加标题和搜索框功能
                         title: '关于',
                         path: '/about/',
                         collapsable: false, // 可选的, 默认值是 true,
-                        sidebarDepth: 1    // 可选的, 默认值是 1
+                        sidebarDepth: 2    // 可选的, 默认值是 1
                     },
                 ],
                 "/massage/": [
@@ -79,60 +85,94 @@ module.exports = {//添加标题和搜索框功能
                         title: '留言板',
                         path: '/massage/',
                         collapsable: false, // 可选的, 默认值是 true,
-                        sidebarDepth: 1    // 可选的, 默认值是 1
+                        sidebarDepth: 2    // 可选的, 默认值是 1
                     },
                 ],
                 "/backendtechnology/java/": [
                     {
                         title: 'JAVA',
-                        path: '/java/',
+                        path: '/backendtechnology/java/',
                         collapsable: false, // 可选的, 默认值是 true,
-                        sidebarDepth: 1,    // 可选的, 默认值是 1
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
                         children: urlPattern.pattern(routers.java, '/backendtechnology/java/')
                     },
                 ],
                 "/backendtechnology/microservice/": [
                     {
                         title: '微服务',
-                        path: '/microservice/',
+                        path: '/backendtechnology/microservice/',
                         collapsable: false, // 可选的, 默认值是 true,
-                        sidebarDepth: 1,    // 可选的, 默认值是 1
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
                         children: urlPattern.pattern(routers.microservice, '/backendtechnology/microservice/')
                     },
                 ],
                 "/backendtechnology/middleware/": [
                     {
                         title: '中间件',
-                        path: '/middleware/',
+                        path: '/backendtechnology/middleware/',
                         collapsable: false, // 可选的, 默认值是 true,
-                        sidebarDepth: 1,    // 可选的, 默认值是 1
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
                         children: urlPattern.pattern(routers.middleware, '/backendtechnology/middleware/')
                     },
                 ],
                 "/backendtechnology/database/": [
                     {
                         title: '数据库',
-                        path: '/database/',
+                        path: '/backendtechnology/database/',
                         collapsable: false, // 可选的, 默认值是 true,
-                        sidebarDepth: 1,    // 可选的, 默认值是 1
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
                         children: urlPattern.pattern(routers.database, '/backendtechnology/database/')
                     },
                 ],
                 "/backendtechnology/current/": [
                     {
                         title: '并发编程',
-                        path: '/current/',
+                        path: '/backendtechnology/current/',
                         collapsable: false, // 可选的, 默认值是 true,
-                        sidebarDepth: 1,    // 可选的, 默认值是 1
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
                         children: urlPattern.pattern(routers.current, '/backendtechnology/current/')
                     },
+                ],
+                "/backendtechnology/deploy/": [
+                    {
+                        title: '部署',
+                        path: '/backendtechnology/deploy/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
+                        children: urlPattern.pattern(routers.deploy, '/backendtechnology/deploy/')
+                    },
+                    {
+                        title: '平台即服务',
+                        path: '/backendtechnology/deploy/deployplatform/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
+                        children: urlPattern.pattern(routers.deployplatform, '/backendtechnology/deploy/deployplatform/')
+                    },
+                ],
+                "/backendtechnology/frame/": [
+                    {
+                        title: 'spring',
+                        path: '/backendtechnology/frame/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
+                        children: urlPattern.pattern(routers.spring, '/backendtechnology/frame/spring/')
+                    }
+                ],
+                "/backendtechnology/design/": [
+                    {
+                        title: '设计模式',
+                        path: '/backendtechnology/design/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
+                        children: urlPattern.pattern(routers.design, '/backendtechnology/design/')
+                    }
                 ],
                 "/openuphorizons/other/": [
                     {
                         title: '技术拓展',
                         path: '/other/',
                         collapsable: false, // 可选的, 默认值是 true,
-                        sidebarDepth: 1,    // 可选的, 默认值是 1
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
                         children: urlPattern.pattern(routers.other, '/openuphorizons/other/')
                     },
                 ],
@@ -141,7 +181,7 @@ module.exports = {//添加标题和搜索框功能
                         title: '技术陷阱',
                         path: '/trap/',
                         collapsable: false, // 可选的, 默认值是 true,
-                        sidebarDepth: 1,    // 可选的, 默认值是 1
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
                         children: urlPattern.pattern(routers.trap, '/openuphorizons/trap/')
                     },
                 ],
@@ -150,14 +190,38 @@ module.exports = {//添加标题和搜索框功能
                         title: '面试宝典',
                         path: '/interview/',
                         collapsable: false, // 可选的, 默认值是 true,
-                        sidebarDepth: 1,    // 可选的, 默认值是 1
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
                         children: urlPattern.pattern(routers.interview, '/openuphorizons/interview/')
                     },
                 ],
-
+                "/fronttechnology/vue/": [
+                    {
+                        title: 'Vue指南',
+                        path: '/fronttechnology/vue/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
+                        children: urlPattern.pattern(routers.vue, '/fronttechnology/vue/')
+                    },
+                    {
+                        title: 'Vue官方文档个人阅读',
+                        path: '/fronttechnology/vue/ownstudy/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
+                        children: urlPattern.pattern(routers.ownstudy, '/fronttechnology/vue/ownstudy/')
+                    },
+                ],
+                "/fronttechnology/javascript/": [
+                    {
+                        title: 'Javascript指南',
+                        path: '/fronttechnology/javascript/',
+                        collapsable: false, // 可选的, 默认值是 true,
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
+                        children: urlPattern.pattern(routers.javascript, '/fronttechnology/javascript/')
+                    },
+                ],
             }
         ,
-        displayAllHeaders: false,// 默认值：false
+        displayAllHeaders: false ,// 默认值：false
         sidebarDepth: 2,
         // 假定 GitHub。也可以是一个完整的 GitLab URL。
         repo: 'Memorydoc/vueBlog',
@@ -174,7 +238,7 @@ module.exports = {//添加标题和搜索框功能
         // 如果你的文档在某个特定的分支（默认是 'master' 分支）：
         docsBranch: 'dev',
         // 默认为 false，设置为 true 来启用
-        editLinks: true,
+        editLink: false,
         // 自定义编辑链接的文本。默认是 "Edit this page"
         editLinkText: '帮我改进页面内容！',
 
@@ -190,6 +254,17 @@ module.exports = {//添加标题和搜索框功能
     },
     extraWatchFiles: [
         './config.js', // 使用相对路径
-    ]
+    ],
+    markdown: {
+        // markdown-it-anchor 的选项
+        anchor: { permalink: false },
+        // markdown-it-toc 的选项
+        toc: { includeLevel: [1, 2] },
+        extendMarkdown: md => {
+            // 使用更多的 markdown-it 插件!
+           // md.use(require('markdown-it-xxx'))
+        },
+        lineNumbers: true
+    }
 }
 

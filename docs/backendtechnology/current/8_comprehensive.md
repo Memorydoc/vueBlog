@@ -4,7 +4,7 @@ title: 综合
 ## Executor（顶级接口，线程执行器）
 
 ## ExecutorService （服务）
->通过实现Executor，对线程进行管理execute、submit、isTerminated（线程池是否执行完成）等
+>通过实现Executor，对线程进行管理execute:submit:isTerminated（线程池是否执行完成）等
 execute可以传入 任务，对任务进行处理
 
 ## FutureTask (将来的任务)

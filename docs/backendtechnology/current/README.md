@@ -1,6 +1,7 @@
 ---
 title: '资源'
 pageClass: custom-page-class
+next: ./1_Atomic
 ---
 
 

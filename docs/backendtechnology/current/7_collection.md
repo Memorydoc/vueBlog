@@ -110,7 +110,7 @@ ConcurrentLinkedDeque（双端队列）：可以从列头获取值，也可以�
 如果BlockQueue是满的，试图往队列中添加元素的操作将会被阻塞。直到有剩余空间才会被唤醒
 
 ### ArrayBlockQueue
->是一个有界的队列阻塞队列 同样也是提供poll()、 peek() 、size()、element()方法，方法使用方法同上面原理相同
+>是一个有界的队列阻塞队列 同样也是提供poll(): peek() :size():element()方法，方法使用方法同上面原理相同
 
 ### LinkedBlockQueue
 >是一个无界的阻塞队列，当然也可以指定为有界的
@@ -124,7 +124,7 @@ ConcurrentLinkedDeque（双端队列）：可以从列头获取值，也可以�
 > SynchronousQueue 和 LinkedTransferQueue 都应该先创建消费者，再创建生产者。 LinkedTransferQueue 和 SynchronousQueue的区别就是
 > SynchronousQueue （不能添加元素的队列）容量为空，LinkedTransferQueue可以进行嗅探容量，就是可以往对队列中添加元素
 
-### add()、offer()、put()区别
+### add():offer():put()区别
 1.add往队列中加入元素，如果超出队列限定值，则抛出异常
 2.offer加入元素。如果超出则return false
 3.put() 往队列中加入元素，如果超出则等待阻塞

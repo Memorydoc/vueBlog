@@ -3,25 +3,30 @@ title: 服务器搭建https
 ---
 
 
-
-## Let’s Encrypt 搭建HTTPS
-
-> 我这里只介绍通过Let’s Encrypt 搭建https，还有其他的搭建方式，本人觉得 Let’s Encrypt 最好用，而且免费，并且提供自动更新整数功能
+::: tip 声明
+ 我这里只介绍通过Let’s Encrypt 搭建https，还有其他的搭建方式，本人觉得 Let’s Encrypt 最好用，而且免费，并且提供自动更新整数功能
 *还有linux自签（OPPENSSL生成SSL自签证书） 和 阿里云免费证书， 这里就不做相关介绍了，如果想学习这两种方法，可以参考下面链接*
 [搭建HTTPS服务](https://blog.csdn.net/t6546545/article/details/80508554#3)
+:::
+## Let’s Encrypt 搭建HTTPS
 
-Let’s Encrypt作为一个公共且免费SSL的项目逐渐被广大用户传播和使用，是由Mozilla、Cisco、Akamai、IdenTrust、EFF等组织人员发起，主要的目的也是为了推进网站从HTTP向HTTPS过度的进程，目前已经有越来越多的商家加入和赞助支持。
+Let’s Encrypt作为一个公共且免费SSL的项目逐渐被广大用户传播和使用，是由Mozilla:Cisco:Akamai:IdenTrust:EFF等组织人员发起，主要的目的也是为了推进网站从HTTP向HTTPS过度的进程，目前已经有越来越多的商家加入和赞助支持。
 
-Let’s Encrypt免费SSL证书的出现，也会对传统提供付费SSL证书服务的商家有不小的打击。到目前为止，Let’s Encrypt获得IdenTrust交叉签名，这就是说可以应用且支持包括FireFox、Chrome在内的主流浏览器的兼容和支持，虽然目前是公测阶段，但是也有不少的用户在自有网站项目中正式使用起来。
+Let’s Encrypt免费SSL证书的出现，也会对传统提供付费SSL证书服务的商家有不小的打击。到目前为止，Let’s Encrypt获得IdenTrust交叉签名，这就是说可以应用且支持包括FireFox:Chrome在内的主流浏览器的兼容和支持，虽然目前是公测阶段，但是也有不少的用户在自有网站项目中正式使用起来。
 
 Let’s Encrypt 的最大贡献是它的 ACME 协议，第一份全自动服务器身份验证协议，以及配套的基础设施和客户端。这是为了解决一直以来 HTTPS TLS X.509 PKI 信任模型，即证书权威（Certificate Authority, CA）模型缺陷的一个起步。在客户端-服务器数据传输中，公私钥加密使得公钥可以明文传输而依然保密数据，但公钥本身是否属于服务器，或公钥与服务器是否同属一个身份，是无法简单验证的。证书权威模型通过引入事先信任的第三方，由第三方去验证这一点，并通过在服务器公钥上签名的方式来认证服务器。第三方的公钥则在事先就约定并离线准备好，以备访问时验证签名之用。这个第三方就称为证书权威，简称CA。相应的，CA验证过的公钥被称为证书。问题是，如果服务器私钥泄露，CA无法离线使对应的证书无效化，只能另外发布无效记录供客户端查询。也就是说，在私钥泄露到CA发布无效记录的窗口内，中间人可以肆意监控服-客之间的传输。如果中间人设法屏蔽了客户端对无效记录的访问，那么直到证书过期，中间人都可以进行监控。而由于当前CA验证和签发证书大多手动，证书有效期往往在一年到三年。Let’s Encrypt 签发的证书有效期只有90天，甚至希望缩短到60天。有效期越短，泄密后可供监控的窗口就越短。
 
-*1.在安装之前，服务器需要具备python和git等工具*
+::: danger 注意
+*在安装之前，服务器需要具备python和git等工具。*
 *检查python版本是否在2.7以上*
+:::
 
+
+## 安装python 和 git 
 如果没有安装Python的话，执行以下命令进行安装（如果检测到已安装则略过）
 
-```editorconfig
+
+```sh
     #安装python所需的包
     yum install zlib-devel
     yum install bzip2-devel
@@ -53,13 +58,13 @@ git  --version
 
 如果没有安装Git的话，执行以下命令进行安装（如果检测到已安装则略过）
 
-#git 安装
+git 安装
 yum install git
 
-*2. 快速获取Let’s Encrypt免费SSL证书*
-  相较于第一种自签生成证书的方法，Let’s Encrypt肯定是考虑到推广HTTPS的普及型会让用户简单的获取和部署SSL证书，所以可以采用下面简单的一键部署获取证书。
-  
-  #获取letsencrypt
+##  快速获取免费SSL证书*
+
+ 相较于第一种自签生成证书的方法，Let’s Encrypt肯定是考虑到推广HTTPS的普及型会让用户简单的获取和部署SSL证书,所以可以采用下面简单的一键部署获取证书。
+  获取letsencrypt
   git clone https://github.com/letsencrypt/letsencrypt
   #进入letsencrypt目录
   cd letsencrypt
@@ -67,7 +72,7 @@ yum install git
   ./letsencrypt-auto certonly --standalone --email 17615195790@163.com -d sizegang.cn -d www.sizegang.cn
   >Let’s Encrypt是支持绑定多域名的，上述两种方法都是只支持单域名。
   
-*3. Let’s Encrypt免费SSL证书获取与应用*
+## 免费SSL证书获取与应用
   
   在完成Let’s Encrypt证书的生成之后，我们会在"/etc/letsencrypt/live/www.sizegang.cn/" 域名目录下有4个文件就是生成的密钥证书文件。
   
@@ -79,7 +84,7 @@ yum install git
   因为我的是Nginx环境，那就需要用到fullchain.pem和privkey.pem两个证书文件。修改nginx配置的详细过程，
   上面两种方法都提到了，这里不再赘述，以下我修改好的配置文件：
   
-  ```config 
+  ```sh 
   events {
       worker_connections 1024;
   }
@@ -162,46 +167,64 @@ yum install git
   ```
 >OK，到这里就完成了使用Let’s Encrypt免费证书的方法配置https协议，大家也可访问我的页面来查看效果，地址：[Memorydoc](https://www.sizegang.cn)。
  下面是配置整数自动更新（Let’s Encrypt证书是有效期90天）
- *4.Let’s Encrypt证书自动续期，实现真正的永久免费使用*
-            vim /home/sizegang/https/updatessl.sh    //创建一个名字为updatessl的脚本  这里你可以自定义路径
- 然后在脚本里添加如下代码。
-```config 
-#!/bin/sh
-            # 我的updatessl.sh  文件和 letsencrypt文件在同一目录下，所以这样写，你们可以自定义目录，只要正确即可
-            ./letsencrypt/certbot-auto renew --force-renew --pre-hook "service nginx stop" --post-hook "service nginx start"
-            #第一行是指此脚本使用/bin/sh 来执行
-            #第二行中--force-renew参数代表强制更新
-            #重启ngiinx
+ ## 证书自动续期，实现真正的永久免费使用
+``` sh
+vim /home/sizegang/https/updatessl.sh    //创建一个名字为updatessl的脚本  这里你可以自定义路径
 ```
+ 然后在脚本里添加如下代码。
+```sh 
+#!/bin/bash
+# 我的updatessl.sh  文件和 letsencrypt文件在同一目录下，所以这样写，你们可以自定义目录，只要正确即可
+PATH=/etc:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+/home/sizegang/https/letsencrypt/certbot-auto renew --force-renew --pre-hook "service nginx stop" --post-hook "service nginx start"
+#第一行是指此脚本使用/bin/sh 来执行
+#第二行中--force-renew参数代表强制更新
+#重启ngiinx
+```
+* <code>--pre-hook</code> 
+前置钩子函数
+* <code>--post-hook</code> 
+后置钩子函数
+::: danger 警告
+在使用crontab 执行shell脚本的时候，会出现忽略命令的情况。解决方式:在sh脚本中加入 <code>PATH=/etc:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin</code>
+这时的shell脚本最好用绝对路径，避免出现因环境变量导致路径的不必要的问题
+:::
 
-退出并保存，然后给脚本添加可执行权限
-            //这里的文件路径填写你自己的文件路径
-            chmod +x /home/sizegang/https/updatessl.sh
+退出并保存，然后给脚本添加可执行权限(这里的文件路径填写你自己的文件路径)
+```sh 
+chmod +x /home/sizegang/https/updatessl.sh
+```
             
-*5.创建定时任务*
+## 创建定时任务
  >打开crontab文件 执行命令： crontab -e
  
- 然后在文件末尾添加一行内容： 
-            0  0  28 *  * root /home/sizegang/https/updatessl.sh  
-             //我这里代表每月28号更新一次证书文件，文件路径填写你自己的文件路径
-             
->>具体格式如下：
->>Minute Hour Day Month Dayofweek command
->> 分钟 小时 天 月 天每星期 命令
+ 然后在文件末尾添加一行内容： **(我这里代表每月28号更新一次证书文件，文件路径填写你自己的文件路径 )**  
+ ```sh 
+ 0  0  28 *  * sh /home/sizegang/https/updatessl.sh
+ ```            
+ **具体格式如下:**
+>Minute Hour Day Month Dayofweek command
+> 分钟 小时 天 月 天每星期 命令
 
 每个字段代表的含义如下：
 
-Minute 每个小时的第几分钟执行该任务
-Hour 每天的第几个小时执行该任务
-Day 每月的第几天执行该任务
-Month 每年的第几个月执行该任务
-DayOfWeek 每周的第几天执行该任务
-Command 指定要执行的程序
+Minute 每个小时的第几分钟执行该任务     
+Hour 每天的第几个小时执行该任务      
+Day 每月的第几天执行该任务      
+Month 每年的第几个月执行该任务    
+DayOfWeek 每周的第几天执行该任务       
+Command 指定要执行的程序    
 
 
->>在这些字段里，除了“Command”是每次都必须指定的字段以外，其它字段皆为可选字段，可视需要决定。对于不指定的字段，要用“*”来填补其位置。
->>  **记得重启crontab服务哦。** 好了，自动更新证书已经配置完了，再也不用担心证书过期啦！ 
+::: tip 
+在这些字段里，除了“Command”是每次都必须指定的字段以外，其它字段皆为可选字段，可视需要决定。对于不指定的字段，要用“*”来填补其位置。
+  **记得重启crontab服务哦。** 好了，自动更新证书已经配置完了，再也不用担心证书过期啦！ 
+:::
 
- 
+## 附加
+### crontab 常用命令
+* tail -f /var/log/cron 查看crontab 日志
+* service crond restart 重启crontab 服务
+* crontab -e 添加计划执行脚本
  
 

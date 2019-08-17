@@ -167,8 +167,8 @@ public class ExtendThreadPoolExecutor extends ThreadPoolExecutor {
     }
 
     /**
-     * beforeExecute、afterExecute、terminated 这些方法可以用来扩展ThreadPoolExecutor的行为
-     * 在执行任务的线程中将调用beforeExecutor和afterExecute等方法，在这写方法中可以添加日志、计时、监控或统计信息收集的功能
+     * beforeExecute:afterExecute:terminated 这些方法可以用来扩展ThreadPoolExecutor的行为
+     * 在执行任务的线程中将调用beforeExecutor和afterExecute等方法，在这写方法中可以添加日志:计时:监控或统计信息收集的功能
      * 无论是任务是从run正常返回，还是抛出一个异常而返回，afterExecute都会被调用（如果任务在完成后带一个Error，那么不会调用afterExecute）
      * 如果beforExecute抛出一个RuntimeExeception,那么任务不会被执行并且afterExecutor不会被调用
      */
