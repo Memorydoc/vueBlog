@@ -32,11 +32,32 @@ curl http://ip:5000/v2/
 ```
 ![registry](/img/pwc/registry1.png)
 
+## 注意事项
+   如果你不想使用 <code>127.0.0.1:5000</code> 作为仓库地址，比如想让本网段的其他主机也能把镜像推送到私有仓库。你就得把例如 <code>192.168.199.100:5000 </code>这样的内网地址作为私有仓库地址，这时你会发现无法成功推送镜像。
+   
+   这是因为 Docker 默认不允许非 <code>HTTPS</code> 方式推送镜像。我们可以通过 Docker 的配置选项来取消这个限制，或者查看下一节配置能够通过 <code>HTTPS</code> 访问的私有仓库。
+
+::: danger 小提示（解决方法）
+对于Ubuntu 14.04, Debian 7 Wheezy 版本的（upstart）系统
+，编辑 /etc/default/docker 文件，在其中的 DOCKER_OPTS 中增加如下内容：
+```sh 
+DOCKER_OPTS="--registry-mirror=https://registry.docker-cn.com --insecure-registries=192.168.199.100:5000"
+
+```
+重新启动服务。
+```sh 
+$ sudo service docker restart
+```
+对于Ubuntu 16.04+, Debian 8+, centos 7 （systemd）系统，请直接使用下面配置 Docker Registry客户端的方法解决
+:::
+
 ## 配置Docker Registry客户端
 
    我们这里使用的是 Ubuntu Server 16.04 LTS 版本，属于 systemd 系统，需要在 /etc/docker/daemon.json 中增加如下内容（如果文件不存在请新建该文件）
    
-   {
+   
+```sh 
+{
      "registry-mirrors": [
        "https://registry.docker-cn.com"
      ],
@@ -44,6 +65,7 @@ curl http://ip:5000/v2/
        "ip:5000"
      ]
    }
+```
 > 注意：该文件必须符合 json 规范，否则 Docker 将不能启动。
    之后重新启动服务。
 ```sh   
@@ -52,10 +74,10 @@ $ sudo systemctl restart docker
 ```
 ##  检查客户端配置是否生效
 
-使用 docker info 命令手动检查，如果从配置中看到如下内容，说明配置成功（192.168.254.132 为当前案例 IP）
+使用 docker info 命令手动检查，如果从配置中看到如下内容，说明配置成功（106.13.126.235 为当前案例 IP）
 ```sh  
 Insecure Registries:
- 192.168.254.132:5000
+ 106.13.126.235:5000
  127.0.0.0/8
 ```
 
@@ -69,20 +91,20 @@ docker pull nginx
 docker images
 
 ## 标记本地镜像并指向目标仓库（ip:port/image_name:tag，该格式为标记版本号）
-docker tag nginx 192.168.254.132:5000/nginx
+docker tag nginx 106.13.126.235:5000/nginx
 
 ## 提交镜像到仓库
-docker push 192.168.254.132:5000/nginx
+docker push 106.13.126.235:5000/nginx
 ```
 
 ##  查看全部镜像
 ```sh  
-curl -XGET http://192.168.254.132:5000/v2/_catalog
+curl -XGET http://106.13.126.235:5000/v2/_catalog
 ```
 ## 查看指定镜像
 以 Nginx 为例，查看已提交的列表(命令方式查看)
 ```sh   
-curl -XGET http://192.168.254.132:5000/v2/nginx/tags/list
+curl -XGET http://106.13.126.235:5000/v2/nginx/tags/list
 ```
 浏览器方式查看   
 
@@ -91,11 +113,11 @@ curl -XGET http://192.168.254.132:5000/v2/nginx/tags/list
 ## 测试拉取镜像
 * 先删除镜像本地镜像（尝试从镜像私服拉去镜像）
 docker rmi nginx
-docker rmi 192.168.254.132:5000/nginx
+docker rmi 106.13.126.235:5000/nginx
 * 再拉取镜像
 
 ```sh 
-docker pull 192.168.254.132:5000/nginx
+docker pull 106.13.126.235:5000/nginx
 ```
 * 拉取镜像成功   
     
@@ -117,18 +139,18 @@ docker pull 192.168.254.132:5000/nginx
 version: '3.1'
 services:
   frontend:
-    image: konradkleine/docker-registry-frontend
+    image: konradkleine/docker-registry-frontend:v2
     ports:
       - 8080:80
     volumes:
       - ./certs/frontend.crt:/etc/apache2/server.crt:ro
       - ./certs/frontend.key:/etc/apache2/server.key:ro
     environment:
-      - ENV_DOCKER_REGISTRY_HOST=192.168.254.132
+      - ENV_DOCKER_REGISTRY_HOST=106.13.126.235
       - ENV_DOCKER_REGISTRY_PORT=5000
 ```
 运行docker-compose up -d (守护进程方式运行: 即后台运行)
 > 注意：请将配置文件中的主机和端口换成自己仓库的地址
-运行成功后在浏览器访问：http://192.168.254.132:8080
+运行成功后在浏览器访问：http://106.13.126.235:8080
 ![webui](/img/pwc/webui.png)
    

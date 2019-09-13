@@ -64,13 +64,19 @@ yum install git
 ##  快速获取免费SSL证书*
 
  相较于第一种自签生成证书的方法，Let’s Encrypt肯定是考虑到推广HTTPS的普及型会让用户简单的获取和部署SSL证书,所以可以采用下面简单的一键部署获取证书。
-  获取letsencrypt
-  git clone https://github.com/letsencrypt/letsencrypt
-  #进入letsencrypt目录
-  cd letsencrypt
-  #生成证书  --email后填写自己的邮箱   -d 后面填写需要配置证书的域名（支持多个哦）, 我这里域名为: sizegang.cn; 绑定域名为: www.sizegang.cn
+  获取letsencrypt         
+  ```sh 
+  git clone https://github.com/letsencrypt/letsencrypt   
+  ```         
+进入letsencrypt目录     
+```sh 
+  cd letsencrypt   
+```  
+生成证书  --email后填写自己的邮箱   -d 后面填写需要配置证书的域名（支持多个哦）, 我这里域名为: sizegang.cn; 绑定域名为: www.sizegang.cn       
+```sh 
   ./letsencrypt-auto certonly --standalone --email 17615195790@163.com -d sizegang.cn -d www.sizegang.cn
-  >Let’s Encrypt是支持绑定多域名的，上述两种方法都是只支持单域名。
+``` 
+ >Let’s Encrypt是支持绑定多域名的，上述两种方法都是只支持单域名。
   
 ## 免费SSL证书获取与应用
   

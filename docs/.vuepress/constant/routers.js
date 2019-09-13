@@ -17,5 +17,7 @@ module.exports = {
     javascript: pwcUtil.getFileNameArray("/fronttechnology/javascript"),//javascript指南
     spring: pwcUtil.getFileNameArray("/backendtechnology/frame/spring"),//spring框架
     design: pwcUtil.getFileNameArray("/backendtechnology/design"),//设计模式
+    dockerinstall: pwcUtil.getFileNameArray("/backendtechnology/deploy/dockerinstall"),//设计模式
+
 
 }

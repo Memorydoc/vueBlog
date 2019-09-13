@@ -79,7 +79,7 @@ Zookeeper Service 集群是一主多从结构。
 
 为了保证主从节点的数据一致性，Zookeeper 采用了 ** ZAB 协议**，这种协议非常类似于一致性算法 **Paxos** 和 **Raft**。
 
-***
+*** 
 #### 什么是 ZAB
 Zookeeper Atomic Broadcast，有效解决了 Zookeeper 集群崩溃恢复，以及主从同步数据的问题。
 
@@ -89,7 +89,6 @@ Zookeeper Atomic Broadcast，有效解决了 Zookeeper 集群崩溃恢复，以�
 * Leading ：Leader 节点（主节点）所处状态。
 #### 最大 ZXID
 最大 ZXID 也就是节点本地的最新事务编号，包含 epoch 和计数两部分。epoch 是纪元的意思，相当于 Raft 算法选主时候的 term。
-***
 #### ZAB 的崩溃恢复
 假如 Zookeeper 当前的主节点挂掉了，集群会进行崩溃恢复。ZAB 的崩溃恢复分成三个阶段：
 
@@ -117,7 +116,6 @@ Zookeeper Atomic Broadcast，有效解决了 Zookeeper 集群崩溃恢复，以�
 
 各个 Follower 收到全新的 epoch 后，返回 ACK 给 Leader，带上各自最大的 ZXID 和历史事务日志。Leader 选出最大的 ZXID，并更新自身历史日志。
 
-***
 * **Synchronization**
 
 同步阶段，把 Leader 刚才收集得到的最新历史事务日志，同步给集群中所有的 Follower。只有当半数 Follower 同步成功，这个准 Leader 才能成为正式的 Leader。
@@ -466,7 +464,6 @@ echo '3' > data/myid
 
 
 ## Zookeeper 配置说明
- 
 ### Zookeeper 的三种工作模式
 * 单机模式：存在单点故障
 * 集群模式：在多台机器上部署 Zookeeper 集群，适合线上环境使用。

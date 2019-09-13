@@ -7,5 +7,6 @@ module.exports = {
         }
     },
     '@vuepress/back-to-top' : true,
-    '@vuepress/theme-default' : true
+    '@vuepress/theme-default' : true,
+    '@vuepress/active-header-links' : true
 };
