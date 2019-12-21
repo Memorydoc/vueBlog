@@ -2,7 +2,7 @@
 home: true
 heroImage: /img/logo.png
 actionText: Get It →
-actionLink: /backendtechnology/current/
+actionLink: /home/
 features:
 - title: 投诉建议
   details: 通过E-mail将您的想法和建议发给我们; 稿件投诉：17615195790@163.com
