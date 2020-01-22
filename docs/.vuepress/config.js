@@ -381,6 +381,22 @@ module.exports = {//添加标题和搜索框功能
                                 children: urlPattern.pattern(routers.interview, '/home/openuphorizons/interview/')
                             }
                         ]
+                    },
+                    {
+                        title: "微服务架构",
+                        path: '/home/',
+                        collapsable: true, // 可选的, 默认值是 true,
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
+                        sidebar: false,
+                        children:[
+                            {
+                                title: '微服务架构2.0',
+                                path: '/home/cloud/cloud2.0/',
+                                collapsable: true, // 可选的, 默认值是 true,
+                                sidebarDepth: 2,    // 可选的, 默认值是 1
+                                children: urlPattern.pattern(routers.cloud, '/home/cloud/cloud2.0/')
+                            }
+                        ]
                     }
                 ],
             }

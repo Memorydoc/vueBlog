@@ -20,5 +20,6 @@ module.exports = {
     datastructure: pwcUtil.getFileNameArray("/home/backendtechnology/datastructure"),//数据结构算法
     dockerinstall: pwcUtil.getFileNameArray("/home/backendtechnology/deploy/dockerinstall"),//设计模式
     home: pwcUtil.getFileNameArray("/home/"),//指南
+    cloud: pwcUtil.getFileNameArray("/home/cloud/cloud2.0"),//指南
 
 }
