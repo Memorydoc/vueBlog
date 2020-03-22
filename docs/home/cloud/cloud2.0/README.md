@@ -18,5 +18,6 @@ title: 微服务架构
 * rocketMq
 * fenign 
 * hystirx 容错降级
+* p6spy 日志追踪
 
 
