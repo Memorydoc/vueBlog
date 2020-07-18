@@ -1,5 +1,5 @@
 ---
-title : Spring 传播机制
+title : Spring事务传播机制和隔离级别
 ---
 > 不使用官方的语言，针对demo 进行自己的理解
 
