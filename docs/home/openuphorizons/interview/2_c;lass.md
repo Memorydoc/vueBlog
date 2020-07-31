@@ -2,6 +2,28 @@
 title: JVM 原理
 ---
 
+
+## JAVA对象头信息
+对象头、实例数据和对齐填充。
+MarkWord
+    Mark Word当中包括，对象的hashCode，分代年龄，锁标记位，是否持有偏向锁，偏向线程id, 偏向时间戳
+
+    HashCode 如果没有重写hashCode方法，那么就是Object当中hashCode方法生成的值
+
+    分代年龄：这个是用来记录对象Survivor的次数，即存活次数，每次发生MinorGC时，如果对象存活，会将其分代年龄加1，如果分代年龄超过了设定的值，会将其移动到老年代区域。
+
+    锁标记位：用来标识在运行过程中，当前对象所持有的锁类型，是轻量级锁，还是重量级锁，还是偏向锁，或者说是GC标记
+
+    偏向线程id:持有偏向锁的线程id
+
+    偏向时间戳：保存偏向时间戳
+
+类型指针
+   类型指针主要是存储对象类型的指针，通过这个指针可以知道是哪个类的实例。
+
+HotSpot同时MarkOop来实现对象头，具体实现保存在markOop.hpp文件当中。
+
+
 ## 常用命令
 * 将Java文件编译成<code>.class</code> 文件
  ```sh 
@@ -248,6 +270,16 @@ public class com.xiangxue.spring.cap1.Demo1 {
 **缺点**：虽然算法免去了内存碎片的出现和节省了空间，但这种算法需要频繁的移动对象，所以会造成gc效率的降低。
 ![jvm](/img/interviewtopic/jvm13.png) 
  
+ 
+ ### 分代整理算法 
+ 根据对象的生命周期不同
+ 
+ 
+ ### 使用场景
+ * 新生代使用复制算法
+ * 老年代使用标记清除算法或者标记整理算法
+ 
+ 
  ## 垃圾回收器
  图解HotSpot虚拟机所包含的收集器：
  
@@ -438,4 +470,29 @@ Tomcat 可以直接加载JAVA_OPTS变量里
 [Jvm 简书总结](https://www.jianshu.com/p/1c6b5c2e95f9)
 
  
- 
+
+##2020-07-12 jvm 加强
+## 补充
+* 元空间（1.8） MetaSpace 占用的是服务器的内存
+* 1.8之前的 PermSpace 使用的是虚拟机的内存
+
+#### 怎么确定对象是垃圾？
+GC Root
+  ![jvm](/img/interviewtopic/jvm14.png)
+
+#### 什么时候进行垃圾回收
+
+1. Eden 或者 S区 内存不够用
+2. 老年代空间不够用
+3. 方法区空间不够用
+4. System.gc()
+
+#### 怎么进行垃圾回收
+ * 标记清楚算法，会在遍历GC Root 的时候，将可达的对象进行标记，然后对未标记的对象进行清楚
+
+
+
+
+::: warning 精选文章
+https://www.cnblogs.com/cxxjohnson/p/8625713.html
+:::

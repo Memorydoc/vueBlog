@@ -397,6 +397,22 @@ module.exports = {//添加标题和搜索框功能
                                 children: urlPattern.pattern(routers.cloud, '/home/cloud/cloud2.0/')
                             }
                         ]
+                    },
+                    {
+                        title: "源码分析",
+                        path: '/home/',
+                        collapsable: true, // 可选的, 默认值是 true,
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
+                        sidebar: false,
+                        children:[
+                            {
+                                title: 'mybatis',
+                                path: '/home/source/mybatis/',
+                                collapsable: true, // 可选的, 默认值是 true,
+                                sidebarDepth: 2,    // 可选的, 默认值是 1
+                                children: urlPattern.pattern(routers.source, '/home/source/mybatis/')
+                            }
+                        ]
                     }
                 ],
             }
