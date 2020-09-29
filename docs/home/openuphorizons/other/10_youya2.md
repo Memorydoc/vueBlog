@@ -323,3 +323,89 @@ public class TestEventTwo extends TestEventParent {
 // 发布事件
      applicationEventPublisher.publishEvent(new TestEventOne(""));
 ```
+
+
+
+## 使用 @EventListener注解 
+> 相当于使用 @EventListener 代替了事件监听器类 
+
+### 创建注解配置类
+```java 
+package com.sprucetec.purchase.config;
+
+import com.sprucetec.purchase.event.TestEventOne;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
+
+/**
+ * @ClassName TestEventConfig
+ * @Description:
+ * @Author Kenny
+ * @Date 2020/9/29
+ **/
+@Component
+public class TestEventConfig {
+
+    //@Async // 异步执行事件 默认为同步执行
+    @EventListener
+    public void handlerEvent(TestEventOne testEventOne){
+        System.out.println("开始发送邮件");
+        testEventOne.sendEmail();
+        System.out.println("发送邮件结束");
+    }
+}
+```
+
+
+### 创建事件类
+```java 
+package com.sprucetec.purchase.event;
+
+import org.springframework.context.ApplicationEvent;
+
+/**
+ * @ClassName TestEventOne
+ * @Description:
+ * @Author Kenny
+ * @Date 2020/9/29
+ **/
+public class TestEventOne  extends ApplicationEvent {
+
+
+    private String toUserName = "";
+
+    public String getToUserName() {
+        return toUserName;
+    }
+
+    public void setToUserName(String toUserName) {
+        this.toUserName = toUserName;
+    }
+
+    /**
+     * Create a new ApplicationEvent.
+     *
+     * @param source the object on which the event initially occurred (never {@code null})
+     */
+    public TestEventOne(Object source) {
+        super(source);
+    }
+
+
+    public  void sendEmail(){
+        System.out.println("发送邮件" + toUserName);
+    }
+
+}
+```
+### 发布事件
+
+```java 
+   TestEventOne testEventOne = new TestEventOne("");
+        testEventOne.setToUserName("司泽刚");
+        publisher.publishEvent(testEventOne);
+        System.out.println("其他业务逻辑++++++++++++++++++");
+        return ServiceResultUtil.success("DataImpot Success");
+```
