@@ -223,19 +223,6 @@ module.exports = {//添加标题和搜索框功能
                     }*/,
                 ],
                 "/home/": [
-                    /*{
-                        title: '指南',
-                        path: '/home/',
-                        collapsable: true, // 可选的, 默认值是 true,
-                        sidebarDepth: 2,    // 可选的, 默认值是 1
-                        children: [{
-                            title: '后端栈',
-                            path: '/home/',
-                            collapsable: true, // 可选的, 默认值是 true,
-                            sidebarDepth: 2,    // 可选的, 默认值是 1
-                        }
-                        ]
-                    },*/
                     {
                         title: "后端栈",
                         path: '/home/',
@@ -411,6 +398,29 @@ module.exports = {//添加标题和搜索框功能
                                 collapsable: true, // 可选的, 默认值是 true,
                                 sidebarDepth: 2,    // 可选的, 默认值是 1
                                 children: urlPattern.pattern(routers.source, '/home/source/mybatis/')
+                            }
+                        ]
+                    },
+                    {
+                        title: "人工智能",
+                        path: '/home/articial/',
+                        collapsable: true, // 可选的, 默认值是 true,
+                        sidebarDepth: 2,    // 可选的, 默认值是 1
+                        sidebar: false,
+                        children:[
+                            {
+                                title: '机器学习',
+                                path: '/home/articial/machineLearning/',
+                                collapsable: true, // 可选的, 默认值是 true,
+                                sidebarDepth: 2,    // 可选的, 默认值是 1
+                                children: urlPattern.pattern(routers.machineLearning, '/home/articial/machineLearning/')
+                            },
+                            {
+                                title: '深度学习',
+                                path: '/home/articial/deepLearning/',
+                                collapsable: true, // 可选的, 默认值是 true,
+                                sidebarDepth: 2,    // 可选的, 默认值是 1
+                                children: urlPattern.pattern(routers.deepLearning, '/home/articial/deepLearning/')
                             }
                         ]
                     }

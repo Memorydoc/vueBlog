@@ -10,5 +10,5 @@ features:
   details: 时间是一切财富中最宝贵的财富。 —— 德奥弗拉斯多
 - title: 联系我们
   details: 官方客服QQ：1322287292。    微信公众号：1322287292
-footer: MIT Licensed | Copyright © 2019-PWC kevin
+footer: MIT Licensed | Copyright © 2021 美菜 Kenny
 ---

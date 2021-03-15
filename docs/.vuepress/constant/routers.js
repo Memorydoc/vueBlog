@@ -21,6 +21,8 @@ module.exports = {
     dockerinstall: pwcUtil.getFileNameArray("/home/backendtechnology/deploy/dockerinstall"),//设计模式
     home: pwcUtil.getFileNameArray("/home/"),//指南
     cloud: pwcUtil.getFileNameArray("/home/cloud/cloud2.0"),//指南
-    source: pwcUtil.getFileNameArray("/home/source/mybatis"),//
+    source: pwcUtil.getFileNameArray("/home/source/mybatis"),//mybatis源码
+    machineLearning: pwcUtil.getFileNameArray("/home/articial/machineLearning"),//机器学习
+    deepLearning: pwcUtil.getFileNameArray("/home/articial/deepLearning"),//深度学习
 
 }
