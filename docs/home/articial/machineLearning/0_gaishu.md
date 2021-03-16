@@ -16,18 +16,18 @@ title: 机器学习概述
 案例一：
 ![人工智能应用场景1](/img/articial/人工智能应用场景1.png)
 
-参考链接：https://quickdraw.withgoogle.com
+参考链接：[](https://quickdraw.withgoogle.com)
 
 案例二：
 
 ![人工智能应用场景3](/img/articial/人工智能应用场景3.png)
 
 
-参考链接：https://pjreddie.com/darknet/yolo/
+参考链接：[](https://pjreddie.com/darknet/yolo/)
 
 案例三：
 ![人工智能应用场景4](/img/articial/人工智能应用场景4.png)
-查看更多：https://deepdreamgenerator.com/
+查看更多：[](https://deepdreamgenerator.com/)
 
 ## 人工智能发展必备三要素
 
@@ -59,7 +59,7 @@ Google TPU 介绍：
 [Google TPU 介绍](https://buzzorange.com/techorange/2017/09/27/what-intel-google-nvidia-microsoft-do-for-ai-chips/)
  
 ## 人工智能、机器学习和深度学习
-![人工智能必备三要素](/img/articial/人人工智能范围.png)
+![人工智能必备三要素](/img/articial/人工智能范围.png)
 
 * 人工智能和机器学习，深度学习的关系
     * 机器学习是人工智能的一个实现途径
