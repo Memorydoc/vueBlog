@@ -51,8 +51,6 @@ title: 机器学习概述
 GPU其实是一种SIMD(Single Instruction Multiple Data)架构， 他有成百上千个核，每一个核在同一时间最好能做同样的事情。
 
 CPU和GPU的区别：
-
-
 [CPU和GPU的区别](http://www.sohu.com/a/201309334_468740) 
 
 Google TPU 介绍：
