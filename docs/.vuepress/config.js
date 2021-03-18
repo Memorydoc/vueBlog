@@ -428,6 +428,13 @@ module.exports = {//添加标题和搜索框功能
                                 collapsable: true, // 可选的, 默认值是 true,
                                 sidebarDepth: 2,    // 可选的, 默认值是 1
                                 children: urlPattern.pattern(routers.sjwl, '/home/articial/sjwl/')
+                            },
+                            {
+                                title: '项目实战',
+                                path: '/home/articial/szal/',
+                                collapsable: true, // 可选的, 默认值是 true,
+                                sidebarDepth: 2,    // 可选的, 默认值是 1
+                                children: urlPattern.pattern(routers.szal, '/home/articial/szal/')
                             }
                         ]
                     }

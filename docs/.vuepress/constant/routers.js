@@ -25,4 +25,6 @@ module.exports = {
     machineLearning: pwcUtil.getFileNameArray("/home/articial/machineLearning"),//机器学习基础
     deepLearning: pwcUtil.getFileNameArray("/home/articial/deepLearning"),//深度学习基础
     sjwl: pwcUtil.getFileNameArray("/home/articial/sjwl"),//神经网络
+    szal: pwcUtil.getFileNameArray("/home/articial/szal"),//人工智能实战
+
 }
