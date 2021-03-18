@@ -1,5 +1,5 @@
 ---
-title: 独立同分布IID(independent and identically distributed)
+title: 独立同分布IID
 ---
 
 ## 独立同分布(i.i.d.)
